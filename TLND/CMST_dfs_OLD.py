@@ -50,7 +50,8 @@ def buildAssocDict(segments):
     for seg in segments:
         node1, node2 = seg.getNodes()
         for nodeID in [node1.getID(), node2.getID()]:
-            if segList.has_key(nodeID):
+            #if segList.has_key(nodeID):
+            if nodeID in segList.keys():
                 segList[nodeID].append(seg)
             else:
                 segList[nodeID] = [seg]
