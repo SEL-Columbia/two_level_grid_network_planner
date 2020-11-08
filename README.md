@@ -2,6 +2,7 @@
 This repo support two-level grid planning given a shapefile of points. It creates MV and LV .shp files and also returns relevant connectivity metrics : Average LV wire length (m) per structure, Average MV wire length (m) per structure, Average NUmber of Structures per Transformer andAverage Cost per structure ($USD)
 
 ## Getting started.
+- Fork this repo, DO NOT clone it as it will not support pushing by noncollaborators.
 - Create a python 3 environment (`conda create -n network python=3.6`)
 - Install gdal with working numpy (`conda install gdal numpy pandas`)
 - Run the requirements file to install other packages (`pip install -r requirements`)
