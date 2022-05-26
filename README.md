@@ -6,7 +6,7 @@ This repo support two-level grid planning given a shapefile of points. It create
 - Create a python 3 environment (`conda create -n network python=3.6`)
 - Install gdal with working numpy (`conda install gdal numpy pandas`)
 - Run the requirements file to install other packages (`pip install -r requirements`)
-- Run the `TwoLevelNetworkDesign.p` (`python TwoLevelNetworkDesign.py`)
+- Run the `TwoLevelNetworkDesign.py` (`python TwoLevelNetworkDesign.py`)
 
 ## Things to Note
 - The provided shapefiles have to be in a CRS that uses meters. There is a function (`convert_to_utm_shp`) in TwoLevelNetworkDesign.py that supports projection from WGS84 to desired crs. The function takes in a csv and outputs a shapefile in the crs.
