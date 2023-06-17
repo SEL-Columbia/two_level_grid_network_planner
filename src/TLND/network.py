@@ -215,42 +215,23 @@ class Seg:
         self._weight = weight
         self._demand = demand
 
-    def __lt__(self, other):
-        if self.getWeight() < other.getWeight():
-            return True
-        else:
-            return False
-
-    def __le__(self, other):
-        if self.getWeight() <= other.getWeight():
-            return True
-        else:
-            return False
-
     def __eq__(self, other):
-        'Two segments are defined as equal iff they have identical IDs.'
-        if self.getID() == other.getID():
-            return True
-        else:
-            return False
+        return self._ID == other._ID
 
     def __ne__(self, other):
-        if self.getID() != other.getID():
-            return True
-        else:
-            return False
-    
+        return self._ID != other._ID
+
+    def __lt__(self, other):
+        return self._weight < other._weight
+
+    def __le__(self, other):
+        return self._weight <= other._weight
+
     def __gt__(self, other):
-        if self.getWeight() > other.getWeight():
-            return True
-        else:
-            return False
+        return self._weight > other._weight
 
     def __ge__(self, other):
-        if self.getWeight() >= other.getWeight():
-            return True
-        else:
-            return False
+        return self._weight >= other._weight
 
     def __repr__(self):
         id = self.getID()
@@ -269,8 +250,8 @@ class Seg:
         return "(%(id)s, %(node1)s, %(node2)s, %(weight)s, %(demand)s)" %vars()
 
     def __hash__(self):
-        return hash(str(self.getID()))
-    
+        return hash(self._ID)
+
     @property
     def __geo_interface__(self):
         'Provides an interface to allow conversion for use with Shapely.'
@@ -312,7 +293,7 @@ class Node:
         self._demand = value5
 
     def __hash__(self):
-        return hash(str(self.getID()))
+        return hash(self._id)
 
     def __repr__(self):
         id = self.getID()
@@ -330,41 +311,23 @@ class Node:
         demand = self.getDemand()
         return "(%(id)s, %(x)s, %(y)s, %(weight)s, %(demand)s)" %vars()
 
-    def __lt__(self, other):
-        if self.getWeight() < other.getWeight():
-            return True
-        else:
-            return False
-
-    def __le__(self, other):
-        if self.getWeight() <= other.getWeight():
-            return True
-        else:
-            return False
-
     def __eq__(self, other):
-        if self.getID() == other.getID():
-            return True
-        else:
-            return False
+        return self._id == other._id
 
     def __ne__(self, other):
-        if self.getID() != other.getID():
-            return True
-        else:
-            return False
-    
+        return self._id != other._id
+
+    def __lt__(self, other):
+        return self._weight < other._weight
+
+    def __le__(self, other):
+        return self._weight <= other._weight
+
     def __gt__(self, other):
-        if self.getWeight() > other.getWeight():
-            return True
-        else:
-            return False
+        return self._weight > other._weight
 
     def __ge__(self, other):
-        if self.getWeight() >= other.getWeight():
-            return True
-        else:
-            return False
+        return self._weight >= other._weight
 
     @property
     def __geo_interface__(self):
