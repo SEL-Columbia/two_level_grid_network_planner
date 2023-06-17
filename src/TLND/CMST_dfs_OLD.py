@@ -102,21 +102,20 @@ def depthFirstSet(node1,node2,root,segList,distDict):
                     firstNode.setWeight(v.getWeight()+distDict[(v.getID(),firstNode.getID())])
             to_visit.extend(vNeighbors)
 
-def maxDistFromNode(node1,root,treeSegments,distDict):
+def maxDistFromNode(node1,root,treeSegments,distDict,segList):
     """
     Given a starting vertex, do a depth-first search and find the furthest node to that vertex
     """
-    segList=buildAssocDict(treeSegments.values())
     to_visit = []  # a list can be used as a stack in Python
-    visited=[]
-    
+    visited = set()
+
     tempWeightByNode={}
     to_visit.append(node1)
     tempWeightByNode[node1.getID()]=0
-    while len(to_visit)!= 0:
+    while to_visit:
         v = to_visit.pop()
         if v not in visited:
-            visited.append(v)
+            visited.add(v)
             vNeighbors=[]
             for seg in segList[v.getID()]:
                 firstNode,secondNode=seg.getNodes()
@@ -203,8 +202,9 @@ def CMST(households,capacity,root):
 
         #tree updated after weights are set
         treeSegments[(node1.getID(), node2.getID())]=network.Seg(SegID,node1, node2,distDict[(node1.getID(),node2.getID())])
-      
-        
+        segList = buildAssocDict(treeSegments.values())
+
+
         # Update dictionaries
         nodesByBranchNode[branchNodeByNode[node2]].extend(nodesByBranchNode.pop(branchNodeByNode[node1]))
         for node in nodesByBranchNode[branchNodeByNode[node2]]:
@@ -213,11 +213,11 @@ def CMST(households,capacity,root):
         # Rebuilt TStore & select maxT object
         for node1 in households_Copy:  #
             #print "node1", node1
+            maxDistFromNode1=maxDistFromNode(node1,root_Copy,treeSegments,distDict,segList)
             for node2 in households_Copy:
                 if node1==node2 or branchNodeByNode[node1]==branchNodeByNode[node2]:
                     continue
                 else:
-                    maxDistFromNode1=maxDistFromNode(node1,root_Copy,treeSegments,distDict)
                     #print "maaxx",maxDistFromNode1
                     if (node2.getWeight()+distDict[node1.getID(),node2.getID()]+maxDistFromNode1<=capacity): #1 2ye baslansa ne olur?
                         #print "TTTTT", Tvalue
